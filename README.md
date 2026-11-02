@@ -52,8 +52,6 @@ The ESP32 advertises the BLE device as `AQM-Kavin`.
 | Humidity | `7a1f0003-8e23-4b8c-a123-456789abcdef` | Read, Notify |
 | Sampling interval | `7a1f0004-8e23-4b8c-a123-456789abcdef` | Read, Write |
 
-The temperature and humidity characteristics are transmitted as text values. The sampling-interval characteristic accepts a value in seconds, from 1 to 3600.
-
 ## Build and run
 
 ### 1. Upload the ESP32 firmware
