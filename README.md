@@ -95,8 +95,8 @@ Record only tests that you have actually completed. The following tests can be u
 
 Proof files, if included:
 
-- `AQM_Track_A_Demo.mp4` — BLE connection and logger demonstration.
-- `AQM_Track_A_CSV_Logging_Demo.mp4` — CSV output demonstration.
+- `AQM_Track_A_Demo.mp4` — BLE connection and nRF Connect demonstration.
+- `AQM_Track_A_CSV_Logging_Demo.mp4` — logger and CSV output demonstration.
 - `AQM_Track_A_Readings.csv` — sample CSV output.
 
 ## Issues and limitations
