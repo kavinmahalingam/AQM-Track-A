@@ -29,8 +29,6 @@ This project uses an ESP32 and a BMP280 sensor to collect temperature readings a
 | VCC | Connect to the voltage supported by your BMP280 breakout board |
 | GND | GND |
 
-Check your sensor module’s voltage requirements before connecting power.
-
 **Sensor limitation:** The BMP280 measures temperature and pressure, not humidity. In this firmware, humidity is a simulated value of `50.0%`; it is not a measured humidity reading.
 
 ## Software and files
