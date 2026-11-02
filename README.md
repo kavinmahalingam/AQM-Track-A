@@ -103,21 +103,15 @@ Proof files, if included:
 - `AQM_Track_A_CSV_Logging_Demo.mp4` — CSV output demonstration.
 - `AQM_Track_A_Readings.csv` — sample CSV output.
 
-## Known issues and limitations
+## Issues and limitations
 
 - Humidity is simulated at `50.0%`; it is not measured by the BMP280.
 - The Python logger’s polling interval and the ESP32’s sampling interval are separate settings.
 - If the BMP280 is not detected or is wired incorrectly, valid sensor readings may not be available.
 - BLE connection and operation depend on the computer or phone’s Bluetooth support.
 
-## AI usage note
+## AI usage 
 
 I used ChatGPT to help interpret the task requirements, organize the README, and troubleshoot the BLE logger and CSV workflow. I tested the firmware and logger on my hardware and checked the documentation against my project setup. I retained only details that matched my implementation and identified simulated humidity as a limitation.
 
-## Submission checklist
 
-- [ ] Source code uploaded: `esp32_firmware.ino` and `aqm_logger.py`
-- [ ] README includes the selected track, hardware, wiring, run instructions, BLE UUID table, tests, limitations, and AI usage note
-- [ ] Proof video uploaded or linked
-- [ ] CSV output included, if requested
-- [ ] Repository is accessible to the evaluator
