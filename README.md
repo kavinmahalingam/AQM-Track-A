@@ -115,6 +115,19 @@ Proof files, if included:
 - `AQM_Track_A_CSV_Logging_Demo.mp4` — logger and CSV output demonstration.
 - `AQM_Track_A_Readings.csv` — sample CSV output.
 
+## Demo Screenshots
+
+The screenshots below show the CSV readings, PowerShell readings, and live temperature-alert status in nRF Connect.
+
+### CSV Readings
+![CSV Readings](CSV.png)
+
+### PowerShell Readings
+![PowerShell Readings](PowerShell_reading.png)
+
+### nRF Connect Readings
+![nRF Connect Readings](nRFConnect_reading.jpg)
+
 ## Issues and limitations
 
 - Humidity is simulated at `50.0%`; it is not measured by the BMP280.
