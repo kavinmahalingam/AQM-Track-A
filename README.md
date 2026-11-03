@@ -64,7 +64,7 @@ The ESP32 provides a temperature alert through a dedicated BLE characteristic.
 - **Alert threshold:** 31.0°C
 - **Alert value:** `1` = ON, `0` = OFF
 
-The alert is based on the 5-sample moving-average temperature. When the average temperature is greater than 31.10°C, the characteristic value becomes `1`; otherwise, it remains `0`.
+The alert is based on the 5-sample moving-average temperature. When the average temperature is greater than 31.0°C, the characteristic value becomes `1`; otherwise, it remains `0`.
 
 The alert can be viewed in nRF Connect by reading or subscribing to the Temperature Alert characteristic. The Python BLE logger also records the alert value in the CSV file when the characteristic is available.
 
