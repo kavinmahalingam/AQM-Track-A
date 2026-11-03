@@ -20,12 +20,16 @@ Adafruit_BMP280 bmp;
 #define TEMP_UUID         "7a1f0002-8e23-4b8c-a123-456789abcdef"
 #define HUMIDITY_UUID     "7a1f0003-8e23-4b8c-a123-456789abcdef"
 #define INTERVAL_UUID     "7a1f0004-8e23-4b8c-a123-456789abcdef"
+#define ALERT_UUID        "7a1f0005-8e23-4b8c-a123-456789abcdef"
 
-// ---------- Sampling ----------
+// ---------- Sampling and alert settings ----------
 const uint8_t WINDOW_SIZE = 5;
 const uint32_t DEFAULT_INTERVAL_MS = 2000;
 const uint32_t MIN_INTERVAL_SECONDS = 1;
 const uint32_t MAX_INTERVAL_SECONDS = 3600;
+
+// Alert turns ON when the 5-sample average temperature is above this value.
+const float TEMPERATURE_ALERT_THRESHOLD_C = 31.0;
 
 float temperatureSamples[WINDOW_SIZE];
 float humiditySamples[WINDOW_SIZE];
@@ -42,6 +46,7 @@ uint32_t lastSampleTime = 0;
 BLECharacteristic *temperatureCharacteristic = nullptr;
 BLECharacteristic *humidityCharacteristic = nullptr;
 BLECharacteristic *intervalCharacteristic = nullptr;
+BLECharacteristic *alertCharacteristic = nullptr;
 
 bool deviceConnected = false;
 
@@ -99,6 +104,7 @@ float readSimulatedHumidity() {
 bool readSensor(float &temperatureC, float &humidityPercent) {
   temperatureC = bmp.readTemperature();
   humidityPercent = readSimulatedHumidity();
+
   return !isnan(temperatureC);
 }
 
@@ -134,17 +140,32 @@ void updateCharacteristics() {
   char temperatureText[16];
   char humidityText[16];
 
-  snprintf(temperatureText, sizeof(temperatureText), "%.2f",
-           averageTemperature);
-  snprintf(humidityText, sizeof(humidityText), "%.2f",
-           averageHumidity);
+  snprintf(
+    temperatureText,
+    sizeof(temperatureText),
+    "%.2f",
+    averageTemperature
+  );
+
+  snprintf(
+    humidityText,
+    sizeof(humidityText),
+    "%.2f",
+    averageHumidity
+  );
+
+  // Alert is based on the moving-average temperature.
+  const char *alertValue =
+    (averageTemperature > TEMPERATURE_ALERT_THRESHOLD_C) ? "1" : "0";
 
   temperatureCharacteristic->setValue(temperatureText);
   humidityCharacteristic->setValue(humidityText);
+  alertCharacteristic->setValue(alertValue);
 
   if (deviceConnected) {
     temperatureCharacteristic->notify();
     humidityCharacteristic->notify();
+    alertCharacteristic->notify();
   }
 }
 
@@ -165,20 +186,25 @@ void setup() {
 
   BLEService *service = server->createService(SERVICE_UUID);
 
+  // Temperature: Read + Notify
   temperatureCharacteristic = service->createCharacteristic(
     TEMP_UUID,
     BLECharacteristic::PROPERTY_READ |
     BLECharacteristic::PROPERTY_NOTIFY
   );
   temperatureCharacteristic->addDescriptor(new BLE2902());
+  temperatureCharacteristic->setValue("0.00");
 
+  // Humidity: Read + Notify
   humidityCharacteristic = service->createCharacteristic(
     HUMIDITY_UUID,
     BLECharacteristic::PROPERTY_READ |
     BLECharacteristic::PROPERTY_NOTIFY
   );
   humidityCharacteristic->addDescriptor(new BLE2902());
+  humidityCharacteristic->setValue("50.00");
 
+  // Sampling interval: Read + Write
   intervalCharacteristic = service->createCharacteristic(
     INTERVAL_UUID,
     BLECharacteristic::PROPERTY_READ |
@@ -186,6 +212,16 @@ void setup() {
   );
   intervalCharacteristic->setCallbacks(new IntervalCallbacks());
   intervalCharacteristic->setValue("2");
+
+  // Temperature alert: Read + Notify
+  // "1" = alert ON; "0" = alert OFF.
+  alertCharacteristic = service->createCharacteristic(
+    ALERT_UUID,
+    BLECharacteristic::PROPERTY_READ |
+    BLECharacteristic::PROPERTY_NOTIFY
+  );
+  alertCharacteristic->addDescriptor(new BLE2902());
+  alertCharacteristic->setValue("0");
 
   service->start();
 
@@ -251,11 +287,18 @@ void loop() {
       addSample(temperatureC, humidityPercent);
       updateCharacteristics();
 
+      bool alertOn =
+        averageTemperature > TEMPERATURE_ALERT_THRESHOLD_C;
+
       Serial.print("Temperature average: ");
       Serial.print(averageTemperature, 2);
       Serial.print(" C | Humidity average (simulated): ");
       Serial.print(averageHumidity, 2);
-      Serial.print(" % | Interval: ");
+      Serial.print(" % | Alert: ");
+      Serial.print(alertOn ? "ON" : "OFF");
+      Serial.print(" | Threshold: ");
+      Serial.print(TEMPERATURE_ALERT_THRESHOLD_C, 1);
+      Serial.print(" C | Interval: ");
       Serial.print(samplingIntervalMs / 1000);
       Serial.println(" s");
     } else {
