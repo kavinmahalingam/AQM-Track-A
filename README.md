@@ -58,7 +58,7 @@ The ESP32 provides a temperature alert through a dedicated BLE characteristic.
 
 - **Characteristic UUID:** `7a1f0005-8e23-4b8c-a123-456789abcdef`
 - **Properties:** Read and Notify
-- **Alert threshold:** 31.10°C
+- **Alert threshold:** 31.0°C
 - **Alert value:** `1` = ON, `0` = OFF
 
 The alert is based on the 5-sample moving-average temperature. When the average temperature is greater than 31.10°C, the characteristic value becomes `1`; otherwise, it remains `0`.
