@@ -53,7 +53,7 @@ The ESP32 advertises the BLE device as `AQM-Kavin`.
 | Sampling interval | `7a1f0004-8e23-4b8c-a123-456789abcdef` | Read, Write |
 | Temperature alert | `7a1f0005-8e23-4b8c-a123-456789abcdef` | Read, Notify |
 
-The temperature alert is based on the 5-sample moving-average temperature. It is `1` when the average temperature is greater than 31.0°C and `0` otherwise.## BLE service and characteristics
+The temperature alert is based on the 5-sample moving-average temperature. It is `1` when the average temperature is greater than 31.0°C and `0` otherwise.
 
 ## Temperature Alert
 
