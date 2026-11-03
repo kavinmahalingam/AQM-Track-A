@@ -31,15 +31,18 @@ This project uses an ESP32 and a BMP280 sensor to collect temperature readings a
 
 **Sensor limitation:** The BMP280 measures temperature and pressure, not humidity. In this firmware, humidity is a simulated value of `50.0%`; it is not a measured humidity reading.
 
-## Software and files
+## Software and Files
 
-The repository contains:
-
-- `esp32_firmware.ino` — ESP32 firmware that reads the sensor and provides BLE characteristics.
-- `aqm_logger.py` — Python BLE client that reads values and saves them to CSV.
-- `AQM_Track_A_Readings.csv` —  sample CSV output file, included.
-- `AQM_Track_A_Demo.mp4` — demonstration video, included.
-- `AQM_Track_A_CSV_Logging_Demo.mp4` — CSV logging demonstration, included separately.
+| File | Description |
+|---|---|
+| `esp32_firmware.ino` | ESP32 firmware for sensor sampling, moving-average filtering, and BLE service/characteristics. |
+| `aqm_logger.py` | Python BLE logger that reads the sensor values and saves them to a CSV file. |
+| `AQM_Track_A_Readings.csv` | Recorded temperature, humidity, and alert readings. |
+| `CSV.png` | Screenshot of the CSV readings. |
+| `Powershell_Reading.png` | Screenshot of the PowerShell output. |
+| `nRFConnect_Reading.jpeg` | Screenshot of the BLE readings in nRF Connect. |
+| `AQM_Track_A_Demo.mp4` | Demonstration video of the air-monitor system. |
+| `AQM_Track_A_CSV_Logging_Demo.mp4` | Demonstration video of CSV logging. |
 
 ## BLE service and characteristics
 
