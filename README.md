@@ -52,6 +52,19 @@ The ESP32 advertises the BLE device as `AQM-Kavin`.
 | Humidity | `7a1f0003-8e23-4b8c-a123-456789abcdef` | Read, Notify |
 | Sampling interval | `7a1f0004-8e23-4b8c-a123-456789abcdef` | Read, Write |
 
+## Temperature Alert
+
+The ESP32 provides a temperature alert through a dedicated BLE characteristic.
+
+- **Characteristic UUID:** `7a1f0005-8e23-4b8c-a123-456789abcdef`
+- **Properties:** Read and Notify
+- **Alert threshold:** 31.10°C
+- **Alert value:** `1` = ON, `0` = OFF
+
+The alert is based on the 5-sample moving-average temperature. When the average temperature is greater than 31.10°C, the characteristic value becomes `1`; otherwise, it remains `0`.
+
+The alert can be viewed in nRF Connect by reading or subscribing to the Temperature Alert characteristic. The Python BLE logger also records the alert value in the CSV file when the characteristic is available.
+
 ## Build and run
 
 ### 1. Upload the ESP32 firmware
