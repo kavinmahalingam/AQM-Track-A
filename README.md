@@ -37,7 +37,7 @@ The repository contains:
 
 - `esp32_firmware.ino` — ESP32 firmware that reads the sensor and provides BLE characteristics.
 - `aqm_logger.py` — Python BLE client that reads values and saves them to CSV.
-- `AQM_Track_A_Readings.csv` — example output file, included.
+- `AQM_Track_A_Readings.csv` —  sample CSV output file, included.
 - `AQM_Track_A_Demo.mp4` — demonstration video, included.
 - `AQM_Track_A_CSV_Logging_Demo.mp4` — CSV logging demonstration, included separately.
 
