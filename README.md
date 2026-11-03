@@ -117,16 +117,16 @@ Proof files, if included:
 
 ## Demo Screenshots
 
-The screenshots below show the CSV readings, PowerShell readings, and live temperature-alert status in nRF Connect.
+The screenshots below show the CSV readings, PowerShell readings, and temperature-alert status in nRF Connect.
 
 ### CSV Readings
 ![CSV Readings](CSV.png)
 
 ### PowerShell Readings
-![PowerShell Readings](PowerShell_reading.png)
+![PowerShell Readings](Powershell_Reading.png)
 
 ### nRF Connect Readings
-![nRF Connect Readings](nRFConnect_reading.jpg)
+![nRF Connect Readings](nRF%20Connect_Reading.jpg)
 
 ## Issues and limitations
 
