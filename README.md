@@ -41,7 +41,7 @@ This project uses an ESP32 and a BMP280 sensor to collect temperature readings a
 | `CSV.png` | Screenshot of the CSV readings. |
 | `Powershell_Reading.png` | Screenshot of the PowerShell output. |
 | `nRFConnect_Reading.jpeg` | Screenshot of the BLE readings in nRF Connect. |
-| `AQM_Track_A_Demo.mp4` | Demonstration video of the air-monitor system. |
+| `AQM_Track_A_Demo.mp4` | Demonstration video of hardware and nRF Connect. |
 | `AQM_Track_A_CSV_Logging_Demo.mp4` | Demonstration video of CSV logging. |
 
 ## BLE service and characteristics
