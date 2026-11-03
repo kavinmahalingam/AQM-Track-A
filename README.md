@@ -126,7 +126,7 @@ The screenshots below show the CSV readings, PowerShell readings, and temperatur
 ![PowerShell Readings](Powershell_Reading.png)
 
 ### nRF Connect Readings
-![nRF Connect Readings](nRFConnect_Reading.jpg)
+![nRF Connect Readings](nRFConnect_Reading.jpeg)
 
 ## Issues and limitations
 
